@@ -30,6 +30,18 @@ app.post('/generateToken', function (req, res) {
   var customToken = firebase.auth().createCustomToken(uid);
   res.send(JSON.stringify({ token: customToken }));
 });
+app.get('/env', function (req, res){
+
+  console.log(process.env.SA_TYPE);
+
+});
+app.post('/sendAlert', function (req, res) {
+  var targetPhone = req.body.target;
+  var targetUser = 'https://redpager-e6f7c.firebaseio.com/user/' + targetPhone;
+  new firebase(targetUser).once('value', function(snap) {
+    console.log('I fetched a user!', snap.val());
+  });
+})
 
 app.listen(app.get('port'), function () {
   console.log('Node app is running on port', app.get('port'));
