@@ -39,7 +39,7 @@ app.post('/sendAlert', function (req, res) {
   var targetPhone = req.body.target;
   var targetUser = 'https://redpager-e6f7c.firebaseio.com/user/' + targetPhone;
   new firebase(targetUser).once('value', function(snap) {
-    console.log('I fetched a user!', snap.val());
+    res.send('I fetched a user!' + snap.val());
   });
 })
 
