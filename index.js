@@ -22,7 +22,7 @@ const firebaseConfig = {
         client_x509_cert_url: process.env.SA_CLIENT_X509_CERT_URL
     },
     databaseURL: "https://redpager-e6f7c.firebaseio.com",
-    apiKey:protos.env.Firebase_apiKey,
+    apiKey:process.env.Firebase_apiKey,
     authDomain: "redpager-e6f7c.firebaseapp.com",
     storageBucket: "redpager-e6f7c.appspot.com"
 }
