@@ -14,6 +14,7 @@ exports.sendAlert = function (res) {
 
 		sendRes.setEncoding('utf8');
 		sendRes.on('data', function (chunk) {
+			console.log(chunk);
 		});
 		sendRes.on('end', function () {
 			console.log('No more data in response.');
