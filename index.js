@@ -37,11 +37,12 @@ app.post('/generateToken', function (req, res) {
 
 app.post('/sendAlert', function (req, res) {
     var targetPhone = req.body.target;
+    var sourcePhone = req.body.source;
     console.log(req.body.target)
     var db = firebaseapp.database().ref().child('users/' + targetPhone);
     db.once("value", function (snapshot) {
         var alert = httpsPost.sendAlert(res);
-        alert.write(httpsPost.postCode(snapshot.val()));
+        alert.write(httpsPost.postCode(snapshot.val(),sourcePhone));
         alert.end();
     })
 });
