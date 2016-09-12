@@ -52,6 +52,7 @@ app.get('/alerts/:target', function (req,res) {
 	var db = firebaseapp.database().ref();
 	db.child('alerts/' + target).once("value", function (snapshot) {
 		res.send(snapshot.val());
+		console.log(snapshot.val())
 	})
 });
 
