@@ -25,8 +25,7 @@ exports.sendAlert = function (res) {
 exports.postCode = function (playerID, senderID) {
 	var postData = JSON.stringify({
 		'app_id': process.env.Onesignal_app_id,
-		'contents': {'en': 'Alert'},
-		'data': {'source': senderID},
+		'contents': {'en': senderID},
 		'include_player_ids': [
 			playerID
 		]
