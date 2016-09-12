@@ -47,6 +47,14 @@ app.post('/sendAlert', function (req, res) {
 	})
 });
 
+app.get('/alerts/:target', function (req,res) {
+	var target = req.params.target;
+	var db = firebaseapp.database().ref();
+	db.child('alerts/' + target).once("value", function (snapshot) {
+		res.send(snapshot.val());
+	})
+});
+
 app.listen(app.get('port'), function () {
 	console.log('Node app is running on port', app.get('port'));
 });
