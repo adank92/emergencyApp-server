@@ -14,7 +14,6 @@ exports.sendAlert = function (res) {
 
 		sendRes.setEncoding('utf8');
 		sendRes.on('data', function (chunk) {
-			console.log(chunk);
 		});
 		sendRes.on('end', function () {
 			console.log('No more data in response.');
@@ -26,7 +25,6 @@ exports.sendAlert = function (res) {
 exports.postCode = function (playerID, senderID) {
 	var postData = JSON.stringify({
 		'app_id': process.env.Onesignal_app_id,
-		'headings' : {"en": "Emergency! Alert!"},
 		'contents': {'en': senderID},
 		'include_player_ids': [
 			playerID
