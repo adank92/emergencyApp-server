@@ -38,11 +38,15 @@ app.post('/generateToken', function (req, res) {
 app.post('/sendAlert', function (req, res) {
 	var targetPhone = req.body.target;
 	var sourcePhone = req.body.source;
+	var date = (new Date()).toUTCString();
 	var db = firebaseapp.database().ref();
-	db.child('alerts/' + targetPhone).set(sourcePhone);
+	db.child('alerts/' + targetPhone).set({
+		"source" : sourcePhone,
+		"date" : date
+	});
 	db.child('users/' + targetPhone).once("value", function (snapshot) {
 		var alert = httpsPost.sendAlert(res);
-		alert.write(httpsPost.postCode(snapshot.val(), sourcePhone));
+		alert.write(httpsPost.postCode(snapshot.val(), sourcePhone,date));
 		alert.end();
 	})
 });
