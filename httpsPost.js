@@ -12,12 +12,14 @@ var postOptions = {
 exports.sendAlert = function (res) {
 	return https.request(postOptions, function (sendRes) {
 
+		var data = "";
+
 		sendRes.setEncoding('utf8');
 		sendRes.on('data', function (chunk) {
+			data += chunk;
 		});
 		sendRes.on('end', function () {
-			console.log('No more data in response.');
-			res.send('Sent');
+			res.send(data);
 		});
 	});
 };
