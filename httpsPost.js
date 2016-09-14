@@ -29,10 +29,11 @@ exports.sendAlert = function (res) {
 	});
 };
 
-exports.postCode = function (playerID, senderID) {
+exports.postCode = function (playerID, senderID, date) {
 	var postData = JSON.stringify({
 		'app_id': process.env.Onesignal_app_id,
 		'contents': {'en': senderID},
+		'data' : {'date' : date},
 		'include_player_ids': [
 			playerID
 		]
