@@ -19,7 +19,12 @@ exports.sendAlert = function (res) {
 			data += chunk;
 		});
 		sendRes.on('end', function () {
-			res.send(data);
+			data = JSON.parse(data);
+			if(typeof data.errors != "undefined"){
+				res.send("Error Occured");
+			} else {
+				res.send("Message Sent");
+			}
 		});
 	});
 };
